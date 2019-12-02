@@ -8,6 +8,9 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-if(connection) {
-    console.log('connection is ok');
-}
+// if(connection) {
+//     console.log('connection is ok');
+// }
+
+// export la connexion sql pour qu'on puisse l'utiliser
+module.exports = connection;

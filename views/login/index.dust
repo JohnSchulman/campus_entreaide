@@ -1,0 +1,46 @@
+<!Doctype html>
+<html lang="fr">
+    <head>
+        <link rel="stylesheet" href="/bootstrapv4/css/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" *
+                crossorigin="anonymous"></script>
+        <script src="/bootstrapv4/js/bootstrap.min.js"></script>
+
+        <script src="/javascripts/login.js"></script>
+        <title>Campus Entreaide</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Campus Entreaide</h1>
+                </div>
+            </div>
+            <div class="row">
+                <form class="col-12" action="/api/users/login" method="post" id="login-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
