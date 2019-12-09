@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('../../confs/mysql');
+const fs = require('fs');
+const upload = require('../../helpers/upload');
+const formidable = require('formidable');
+
+function getMysql() {
+    return require('../../confs/mysql');
+}
 
 /* GET home page. */
 router.get('/me', function(req, res) {
@@ -31,7 +37,7 @@ router.get('/logout', function (req, res) {
 
 router.post('/login', function (req, res) {
     // requette sql pour récupérer dans la table users, le user qui cherche à s'identifier
-    mysql.query('SELECT * FROM `users` WHERE email="' + req.body.email + '" AND password="' + req.body.password + '"',
+    getMysql().query('SELECT * FROM `users` WHERE email="' + req.body.email + '" AND password="' + req.body.password + '"',
         function (error, results, fields) {
         // fonction qui gère les résultats de la requête
             if(error) {
@@ -45,6 +51,33 @@ router.post('/login', function (req, res) {
                 });
             }
         });
+});
+
+router.post('/register', function (req, res) {
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let email = req.body.email;
+    let password = req.body.password;
+    let address = req.body.address;
+
+    upload(req, __dirname + '/../../public/images/avatars/', function (code, msg) {
+        switch (code) {
+            case 0:
+            case 1:
+            default:
+                res.json({
+                    status: false
+                });
+        }
+    }, function () {
+        res.json({
+            status: true
+        });
+    });
+
+    // getMysql().query('', function(error, results, fields) {
+    //
+    // });
 });
 
 module.exports = router;

@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
             // equivalent du .done en ajax
         }).then(r => r.json())
             .then(function (json) {
-                // si status renvoit true on afdfiche ok
+                // si status renvoit true on affiche ok
                 if(json.status === true) {
                     console.log('ok');
                     // je suis connecté
