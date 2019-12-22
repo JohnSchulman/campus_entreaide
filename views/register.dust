@@ -9,7 +9,7 @@
                 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" *
                 crossorigin="anonymous"></script>
         <script src="/bootstrapv4/js/bootstrap.min.js"></script>
-
+        <!-- faite attention de mettre le bon routes ici-->
         <script src="/javascripts/register.js"></script>
         <title>Campus Entraide</title>
     </head>

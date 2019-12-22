@@ -10,6 +10,9 @@ window.addEventListener('load', function () {
         let password = document.querySelector("#password");
         let address = document.querySelector("#address");
 
+        // on met tout les valeurs l'une après l'autres dans formData
+        // y compris l'avatar
+        // pour que dans le fetch o à qu'a mettre formData
         let formData = new FormData();
         formData.append('avatar', avatar.files[0]);
         formData.append('firstName', firstName.value);

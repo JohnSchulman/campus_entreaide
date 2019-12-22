@@ -6,14 +6,15 @@ module.exports = function (req, destination, onError, onSuccess) {
         if(err) {
             onError(0, err);
         }
-
+        // à trouver ce bout de code sur internet
         let avatar = files.avatar;
         let oldpath = avatar.path;
         let newpath = __dirname + '/../../public/images/avatars/' + avatar.name;
         fs.renameSync(oldpath, newpath);
 
         if(fs.existsSync(newpath)) {
-            onSuccess();
+            // chemin vers l'url de l'avatar
+            onSuccess('/images/avatars/' + avatar.name);
         }
         else {
             onError(1, 'L\'upload s\'est mal passé !');

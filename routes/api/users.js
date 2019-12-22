@@ -18,7 +18,10 @@ router.get('/me', function(req, res) {
         });
     } else {
         delete me['password'];
-        res.json(me);
+        res.json({
+            status: true,
+            me: me
+        });
     }
 });
 
@@ -42,7 +45,13 @@ router.post('/login', function (req, res) {
         // fonction qui gère les résultats de la requête
             if(error) {
                 res.json({
-                    status: false
+                    status: false,
+                    message: error
+                });
+            } else if(results !== undefined && results.length === 0) {
+                res.json({
+                    status: false,
+                    message: 'Les identifiants utilisés sont incorrects'
                 });
             } else {
                 req.session.user = results[0];
@@ -63,15 +72,28 @@ router.post('/register', function (req, res) {
     upload(req, __dirname + '/../../public/images/avatars/', function (code, msg) {
         switch (code) {
             case 0:
+                res.json({
+                    status: false,
+                    message: 'erreur de parsing du formulaire'
+                });
+                break;
             case 1:
+                res.json({
+                    status: false,
+                    message: msg
+                });
+                break;
             default:
                 res.json({
-                    status: false
+                    status: false,
+                    message: 'erreur inconnu'
                 });
+                break;
         }
-    }, function () {
+    }, function (avatar_path) {
         res.json({
-            status: true
+            status: true,
+            avatar: avatar_path
         });
     });
 

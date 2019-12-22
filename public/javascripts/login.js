@@ -1,4 +1,12 @@
 window.addEventListener('load', function () {
+    function is_connected() {
+        return fetch('/api/users/me', {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(r => r.json());
+    }
     // sert a encapsuler les requètes
     function login(form) {
         let action = form.getAttribute('action');
@@ -25,9 +33,15 @@ window.addEventListener('load', function () {
                 // si status renvoit true on affiche ok
                 if(json.status === true) {
                     console.log('ok');
+                    window.location.href = '/';
                     // je suis connecté
                 } else if (json.status === false) {
                     console.log('ko');
+                    if(json.message !== undefined) {
+                        let message = document.querySelector('.message');
+                        message.innerHTML = json.message;
+                        message.classList.remove('d-none');
+                    }
                     // je suis pas connecté
                 }
         });
@@ -35,6 +49,11 @@ window.addEventListener('load', function () {
 
     // pour catcher l'evenement et ici pour lorsqu'on click sur submit a garde la page
     // valable que pour le submit
+    is_connected().then(json => {
+        if(json.status) {
+            window.location.href = '/';
+        }
+    });
     let form = document.querySelector('#login-form');
     form.addEventListener('submit', function (e) {
         e.preventDefault();
