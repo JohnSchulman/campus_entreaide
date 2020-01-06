@@ -30,12 +30,14 @@ var apiRouter = require('./routes/api/index');
 var apiUsersRouter = require('./routes/api/users');
 var apiCategoriesRouter = require('./routes/api/categories');
 var apiRequestsRouter = require('./routes/api/requests');
+//var apiDemandesRouter = require('./routes/api/demandes');
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
 app.use('/api/users', apiUsersRouter);
 app.use('/api/categories', apiCategoriesRouter);
 app.use('/api/requests', apiRequestsRouter);
+//app.use('/api/demandes', apiDemandesRouter);
 
 
 module.exports = app;
