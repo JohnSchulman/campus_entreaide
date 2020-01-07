@@ -1,12 +1,4 @@
 window.addEventListener('load', function () {
-    function is_connected() {
-        return fetch('/api/users/me', {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(r => r.json());
-    }
     // sert a encapsuler les requètes
     function login(form) {
         let action = form.getAttribute('action');

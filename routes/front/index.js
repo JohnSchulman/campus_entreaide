@@ -15,6 +15,11 @@ router.get('/register', function (req, res) {
   res.render('register');
 });
 
+router.get('/account', function (req, res) {
+  res.render('account');
+});
+
+
 /* GET demande page. */
 router.get('/demande', function(req, res) {
   res.render('demande');

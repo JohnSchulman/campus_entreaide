@@ -1,6 +1,8 @@
 <!Doctype html>
 <html lang="fr">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="/bootstrapv4/css/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                 integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -10,14 +12,15 @@
                 crossorigin="anonymous"></script>
         <script src="/bootstrapv4/js/bootstrap.min.js"></script>
 
+        <script src="/javascripts/is_connected.js"></script>
         <script src="/javascripts/login.js"></script>
-        <title>Campus Entreaide</title>
+        <title>Campus Entraide</title>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>Campus Entreaide</h1>
+                    <h1>Campus Entraide</h1>
                 </div>
             </div>
             <div class="row">

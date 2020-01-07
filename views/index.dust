@@ -1,117 +1,177 @@
 <!Doctype html>
 <html lang="fr">
 <head>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" href="/bootstrapv4/css/bootstrap.min.css" />
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" *
-          crossorigin="anonymous"></script>
-  <script src="/bootstrapv4/js/bootstrap.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrapv4/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" *
+            crossorigin="anonymous"></script>
+    <script src="/bootstrapv4/js/bootstrap.min.js"></script>
 
-  <script src="/javascripts/index.js"></script>
+    <script src="/javascripts/disconnect.js"></script>
+    <script src="/javascripts/is_connected.js"></script>
+    <script src="/javascripts/index.js"></script>
 
-
-  <title>Campus Entreaide</title>
+    <title>Campus Entreaide</title>
 </head>
 
 <body>
-<header class="container-fluid">
-  <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto" class="navbar-nav">
-        <li class="nav-item">
-          <a  style="color: mediumblue";  class="navbar-brand" href="http://localhost:3000/demande">Toutes les demandes</a>
-        </li>
-        <li class="nav-item">
-          <a style="color: mediumblue"; class="navbar-brand" href="#">Proposer mes services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:3000/register">Inscription</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost:3000/login">Connexion</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
-<main class="container-fluid mt-2" >
-  <h1 style=" padding-bottom : 40px;" align="center">Campus Entraide</h1>
-  <h2 style=" padding-bottom : 40px;" align="center">Comment s'entraider entre élèves à Campus ID?</h2>
-
-  <div class="container" >
-    <div class="row" >
-      <div class="col-sm-6 col-md-6">
-        <form style="background-color: lightseagreen" style="margin-left: 800px;"  >
-          <div>
-            <label style="font-weight: bold" for="exampleInputEmail1">De quoi avez-vous besoin à Campus ID?</label>
-            <div class="form-group form-check">
-              <label class="radio-inline"><input type="radio" name="Objet" id="Objet">Un Objet </label>
-              <label style="margin-left: 40px;" class="radio-inline"><input type="radio" name="Service" id="Service">Un Service </label>
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img src="images/Logo3.png" alt="Responsive image" height="70" width="70">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto" class="navbar-nav">
+                    <li class="nav-item">
+                        <a style="color: mediumblue" class="navbar-brand" href="/demande">Toutes les demandes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color: mediumblue" class="navbar-brand" href="#">Proposer mes services</a>
+                    </li>
+                    <li class="nav-item show-on-disconnected">
+                        <a class="nav-link" href="/register">Inscription</a>
+                    </li>
+                    <li class="nav-item show-on-disconnected">
+                        <a class="nav-link" href="/login">Connexion</a>
+                    </li>
+                    <li class="nav-item show-on-connected d-none">
+                        <a class="nav-link" href="/account">Mon Compte</a>
+                    </li>
+                    <li class="nav-item show-on-connected d-none">
+                        <a class="nav-link" href="/my-demands">Mes demandes</a>
+                    </li>
+                    <li class="nav-item show-on-connected d-none">
+                        <a class="nav-link" href="#" onclick="disconnect_myself()">Déconnection</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-          <label style="font-weight: bold" for="exampleInputEmail1">Expliquez votre besoin</label>
-          <input style=" height: 100px"; type="besoin" class="form-control" id="examplebesoin" aria-describedby="emailHelp" placeholder="Ex: Est-ce que quelqu'un pourrez m'expliquer le singleton en java">
-          <div class="form-group">
-          </div>
-          <label style="font-weight: bold" class="control-label">Pour quand ? : La date</label>
-          <div  class="input-group date" id="dp3" data-date="15-01-2020" data-date-format="mm-dd-yyyy">
-            <input class="form-control" type="text"  value="15-01-2020">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-          </div>
-          <div class="col text-center">
-            <button type="submit" class="btn btn-primary"  >Demander à mes Camerades</button>
-          </div>
-        </form>
-      </div>
-      <div class="col-0 col-md-2">
-        <img src="images/logo.png" alt="Responsive image"  height="380" width="380"></div>
-    </div>
+        </nav>
+    </header>
+    <main class="container-fluid mt-2">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 style="padding-bottom : 40px;">Campus Entraide</h1>
+                <h2 style="padding-bottom : 40px;">Comment s'entraider entre élèves à Campus ID?</h2>
+            </div>
+        </div>
 
-<h2 style=" padding-top : 80px; padding-bottom : 40px;"   align="center">Quels objets louer à Campus ID?</h2>
-<div class="container">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-microchip"></i> Matériel informatique</button>
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-highlighter"></i> Livres/Fourniture de bureau</button>
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-glass-cheers"></i> Evènement réception fête </button>
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-volleyball-ball"></i> Loisirs</button>
-  </div>
-</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <form class="col-12" style="background-color: lightseagreen;">
+                            <label style="font-weight: bold">De quoi avez-vous besoin à Campus ID?</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="radio" name="service-type" id="Objet">
+                                    </div>
+                                </div>
+                                <label class="radio-inline" for="Objet">Un Objet </label>
+                            </div>
+                            <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="radio" name="service-type" id="Service">
+                                        </div>
+                                    </div>
+                                    <label class="radio-inline" for="Service">Un Service </label>
+                                </div>
+                            <label style="font-weight: bold">Expliquez votre besoin</label>
+                            <textarea style=" height: 100px" class="form-control" id="examplebesoin"
+                                      aria-describedby="emailHelp"
+                                      placeholder="Ex: Est-ce que quelqu'un pourrez m'expliquer le singleton en java"></textarea>
+                            <label style="font-weight: bold" class="control-label">Pour quand ? : La date</label>
+                            <div class="input-group date" id="dp3" data-date="15-01-2020" data-date-format="mm-dd-yyyy">
+                                <input class="form-control" type="text" value="15-01-2020">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-primary">Demander à mes Camerades</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-0 col-md-2">
+                    <img src="images/logo.png" alt="Responsive image" height="380" width="380">
+                </div>
+            </div>
 
-<h2 style=" padding-top : 80px; padding-bottom : 40px;" align="center">Quels services rendre à Campus ID?</h2>
-<div class="container">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" style="padding-bottom : 40px;">
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-laptop"></i> Cours particuliers </button>
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-book-open"></i> Récupération de cours</button>
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-car-side"></i> Covoiturage</button>
-    <button type="button" onclick="window.location.href='settings.html'"><i class="fas fa-comments"></i> Autres...</button>
-  </div>
-</div>
-</main>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 style=" padding-top : 80px; padding-bottom : 40px;">Quels objets louer à Campus ID?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-microchip"></i>
+                    Matériel informatique
+                </button>
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-highlighter"></i>
+                    Livres/Fourniture de bureau
+                </button>
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-glass-cheers"></i>
+                    Evènement réception fête
+                </button>
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-volleyball-ball"></i>
+                    Loisirs
+                </button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 style=" padding-top : 80px; padding-bottom : 40px;">Quels services rendre à Campus ID?</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" style="padding-bottom : 40px;">
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-laptop"></i> Cours
+                    particuliers
+                </button>
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-book-open"></i>
+                    Récupération de cours
+                </button>
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-car-side"></i>
+                    Covoiturage
+                </button>
+                <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i class="fas fa-comments"></i>
+                    Autres...
+                </button>
+            </div>
+        </div>
+    </main>
 </body>
 
 <footer class="container-fluid card-footer">
-  <div class="row">
-    <div class="col-4">
-      <form>
-        <h5>Aide/Contact</h5>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Votre email" />
+    <div class="row">
+        <div class="col-4">
+            <form method="get" action="#">
+                <h5>Aide/Contact</h5>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp"
+                           placeholder="Votre email"/>
+                </div>
+                <div class="form-group">
+                    <label for="email_message">Votre message</label>
+                    <textarea type="text" name="email_message" id="email_message" class="form-control"
+                              aria-describedby="emailMessage" placeholder="Entrez votre mail"></textarea>
+                </div>
+                <div class="col-4 offset-8">
+                    <input type="submit" value="Envoyer" class="form-control"/>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="email_message">Votre message</label>
-          <textarea type="text" name="email_message" id="email_message" class="form-control" aria-describedby="emailMessage" placeholder="Entrez votre mail"></textarea>
-        </div>
-        <div class="col-4 offset-8">
-          <input type="submit" value="Envoyer" class="form-control" />
-        </div>
-      </form>
     </div>
-  </div>
 </footer>
 
 </html>

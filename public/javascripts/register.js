@@ -35,6 +35,11 @@ window.addEventListener('load', function () {
             });
     }
 
+    is_connected().then(json => {
+        if(json.status) {
+            window.location.href = '/';
+        }
+    });
     let form = document.querySelector('#register-form');
     form.addEventListener('submit', function (e) {
         e.preventDefault();
