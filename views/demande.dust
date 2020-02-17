@@ -175,8 +175,9 @@
 </main>
 <footer class="container-fluid card-footer">
     <div class="row">
-        <div class="col-4">
-            <form>
+        <div class="col-7 col-lg-4">
+            <form method="get" action="#">
+                <h5>Aide/Contact</h5>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp"
@@ -187,7 +188,7 @@
                     <textarea type="text" name="email_message" id="email_message" class="form-control"
                               aria-describedby="emailMessage" placeholder="Entrez votre mail"></textarea>
                 </div>
-                <div class="col-4 offset-8">
+                <div class="col-7 offset-5 col-lg-4 offset-lg-8">
                     <input type="submit" value="Envoyer" class="form-control"/>
                 </div>
             </form>

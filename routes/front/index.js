@@ -11,10 +11,12 @@ router.get('/login', function (req, res) {
   res.render('login');
 });
 
+// controller pour la partie register
 router.get('/register', function (req, res) {
   res.render('register');
 });
 
+// controlleur pour la partie mon compte
 router.get('/account', function (req, res) {
   res.render('account');
 });

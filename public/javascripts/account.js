@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+    // lance une promesse si succes le then retourne le resultat de l'api en json
     is_connected().then(json => {
         if(json.status) {
             // tableau d'éléments html qui ont cette classe la
@@ -28,6 +29,7 @@ window.addEventListener('load', function () {
             let last_name = json.me.last_name;
             let address = json.me.address;
             if(address !== '') {
+                // transforme une string bizarre en json
                 address = JSON.parse(address);
             } else {
                 address = {};
