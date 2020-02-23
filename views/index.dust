@@ -17,6 +17,7 @@
     <script src="/javascripts/disconnect.js"></script>
     <script src="/javascripts/is_connected.js"></script>
     <script src="/javascripts/index.js"></script>
+    <script src="/javascripts/autocompletion.js"></script>
 
     <title>Campus Entreaide</title>
 </head>
@@ -109,6 +110,7 @@
                             <label class="radio-inline" for="Service">Un Service </label>
                         </div>
                         <form action="/api/service" method="post">
+                            <input type="hidden" id="service_type" value="0"/>
                             <label style="font-weight: bold">Expliquez votre besoin</label>
                             <div class="objects">
                                 <div class="input-group mb-2">
@@ -116,13 +118,9 @@
                                               placeholder="Ex: Est-ce que quelqu'un pourrait me preter un Rasberry PI ?"></textarea>
                                 </div>
                                 <div class="input-group mb-2">
-                                    <input class="form-control" type="text" placeholder="Catégorie" onKeyUp="autompletion()">
-                                    <div class="dropdown-menu" style="width: 100%" id ="autocompletion" >
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div role="separator" class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
+                                    <input class="form-control" id="autocomplete_input" type="text"
+                                           placeholder="Catégorie">
+                                    <div class="dropdown-menu" style="width: 100%" id="autocompletion">
                                     </div>
                                 </div>
                                 <div class="row">

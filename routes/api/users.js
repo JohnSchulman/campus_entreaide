@@ -96,10 +96,6 @@ router.post('/register', function (req, res) {
             avatar: avatar_path
         });
     });
-
-    // getMysql().query('', function(error, results, fields) {
-    //
-    // });
 });
 
 module.exports = router;

@@ -26,15 +26,23 @@ window.addEventListener('load', function () {
     });
 
     document.querySelector("#Service").addEventListener("click", function () {
+        // pour switcher entre le formulaire objet et le formulaire service
         document.querySelector('.objects').style.display = 'none';
         document.querySelector('.services').style.display = 'inherit';
+        // c'était pour changer la valeur du service type dans le formulaire
+        // pour afficher que les categoriesz appartenant au services qu'on veut
+        document.querySelector('#service_type').value = '1';
     });
 
+    // même principe mais pour les objets
     document.querySelector("#Objet").addEventListener("click", function () {
         document.querySelector('.objects').style.display = 'inherit';
         document.querySelector('.services').style.display = 'none';
+        document.querySelector('#service_type').value = '0';
     });
 
+    // c'était pour afficher le bouton en mode mobile
+    // au click sur le bouton menu, affiche le menu si il est caché et le cache si il est affiché.
     document.querySelector('#btn-menu').addEventListener('click', () => {
         let menu = document.querySelector('#menu');
         if (menu.classList.contains('d-none')) {
@@ -43,32 +51,4 @@ window.addEventListener('load', function () {
             menu.classList.add('d-none')
         }
     });
-
-    document.querySelector("#autocompletion").addEventListener("onKeyUp", function () {
-    });
 });
-
-function autompletion() {
-
-    // faire une http de la même manière que Ajax mais plus proprement.
-    fetch(action, {
-        method: method,
-        body: JSON.stringify({
-            title: titleCategory,
-            image: imageCategory
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(r => r.json())
-        .then(function (json) {
-            // si status renvoit true on affiche ok
-            if (json.status === true) {
-                console.log('ok');
-                // je suis connecté
-            } else if (json.status === false) {
-                console.log('ko');
-            }
-
-        });
-}
