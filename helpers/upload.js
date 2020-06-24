@@ -1,4 +1,5 @@
 const formidable = require("formidable");
+const fs = require('fs');
 
 module.exports = function (req, destination, onError, onSuccess) {
     let form = new formidable.IncomingForm();
@@ -9,8 +10,9 @@ module.exports = function (req, destination, onError, onSuccess) {
         // à trouver ce bout de code sur internet
         let avatar = files.avatar;
         let oldpath = avatar.path;
-        let newpath = __dirname + '/../../public/images/avatars/' + avatar.name;
-        fs.renameSync(oldpath, newpath);
+        let newpath = __dirname + '/../public/images/avatars/' + avatar.name.replace(/\ /g, '_');
+
+        fs.rename(oldpath, newpath, err => {});
 
         if(fs.existsSync(newpath)) {
             // chemin vers l'url de l'avatar

@@ -39,13 +39,14 @@ window.addEventListener('load', function () {
         });
     }
 
-    // pour catcher l'evenement et ici pour lorsqu'on click sur submit a garde la page
-    // valable que pour le submit
     is_connected().then(json => {
         if(json.status) {
             window.location.href = '/';
         }
     });
+
+    // pour catcher l'evenement et ici pour lorsqu'on click sur submit a garde la page
+    // valable que pour le submit
     let form = document.querySelector('#login-form');
     form.addEventListener('submit', function (e) {
         e.preventDefault();

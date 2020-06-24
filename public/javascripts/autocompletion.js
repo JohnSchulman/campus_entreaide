@@ -17,17 +17,19 @@ window.addEventListener('load', function () {
                 if(json.status) {
                     console.log('success');
                     // permet de ne pas afficher mille fois l'element
-                    // permet de vider de html de l'element
+                    // permet de vider du html de l'element
                     autocompletion.innerHTML = '';
+                    // si le catégorie est faux j'affiche aucun resultat
                     if(json.categories.length === 0) {
                         autocompletion.innerHTML = `<a class="dropdown-item" href="#">Aucun résultat</a>`;
                     }
                     for(let c of json.categories) {
                         // concantene en html le petit html qui est dans le chaine de caractere
                         // innerHTML permet d'ajouter du html de l'élément
-                        // permet de vider de html de l'element
-                        // permet de redifnir de html
+                        // permet de vider du html de l'element
+                        // permet de redifnir du html
                         // tout depend du += / = / = vide
+                        // $ pour une variable en html
                         autocompletion.innerHTML += `<a class="dropdown-item autocomplete-link" 
                                                         data-id="${c.id}" 
                                                         data-title="${c.title}" 
@@ -39,9 +41,11 @@ window.addEventListener('load', function () {
                     for(let autocomplete_link of document.querySelectorAll('.autocomplete-link')) {
 
                         autocomplete_link.addEventListener('click', e => {
-                           // permet de enlever de ne pas mettre le # a la fin du l'url
+                           // permet d'enlever de ne pas mettre le # a la fin du l'url
                             e.preventDefault();
                             // permet d'afficher le text dans le input
+                            // on recupère l'attribut 'data-title' (qui contient le titre) de la class (ou selector) 'autocomplete-link'
+                            // et on le récupère la valeur dans l'input (grâce au selector autocomplete_input)
                             autocomplete_input.value = autocomplete_link.getAttribute('data-title');
                             // ca supprime la liste html
                             autocompletion.innerHTML = '';
@@ -61,6 +65,7 @@ window.addEventListener('load', function () {
             });
     }
 
+    // supprime la liste quand on arrête de clicker
     autocomplete_input.addEventListener('keyup', function () {
         if(autocomplete_input.value !== '') {
             catcher_autocompletion()

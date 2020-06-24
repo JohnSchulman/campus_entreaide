@@ -13,6 +13,8 @@
             crossorigin="anonymous"></script>
     <script src="/bootstrapv4/js/bootstrap.min.js"></script>
 
+    <script src="/javascripts/is_connected.js"></script>
+    <script src="/javascripts/disconnect.js"></script>
     <script src="/javascripts/demande.js"></script>
 
     <title>Campus Entreaide</title>
@@ -32,16 +34,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto" class="navbar-nav">
                 <li class="nav-item">
-                    <a  style="color: mediumblue";  class="navbar-brand" href="#">Toutes les demandes</a>
+                    <a style="color: mediumblue" class="navbar-brand" href="/demande">Toutes les demandes</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: mediumblue"; class="navbar-brand" href="#">Proposer mes services</a>
+                    <a style="color: mediumblue" class="navbar-brand" href="#">Proposer mes services</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/register">Inscription</a>
+                <li class="nav-item show-on-disconnected">
+                    <a class="nav-link" href="/register">Inscription</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:3000/login">Connexion</a>
+                <li class="nav-item show-on-disconnected">
+                    <a class="nav-link" href="/login">Connexion</a>
+                </li>
+                <li class="nav-item show-on-connected d-none">
+                    <a class="nav-link" href="/account">Mon Compte</a>
+                </li>
+                <li class="nav-item show-on-connected d-none">
+                    <a class="nav-link" href="/my-demands">Mes demandes</a>
+                </li>
+                <li class="nav-item show-on-connected d-none">
+                    <a class="nav-link" href="#" onclick="disconnect_myself()">Déconnection</a>
                 </li>
             </ul>
         </div>
