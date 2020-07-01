@@ -20,6 +20,36 @@
     <script src="/javascripts/autocompletion.js"></script>
 
     <title>Campus Entreaide</title>
+    <style>
+        .button {
+            background-color: #9fcdff;
+            border: 1px solid #721c24;
+        }
+
+        .button__middle {
+            border-right: none;
+            border-left: none;
+        }
+
+        .bouton_roundleft {
+            border-right: none;
+            border-radius: 15px 0 0 15px;
+        }
+        .bouton_roundright {
+            border-left: none;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .main-form {
+            background-color: lightseagreen;
+            border-radius: 15px;
+        }
+        .margin{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -91,7 +121,7 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="row">
-                    <form class="col-12" style="background-color: lightseagreen;">
+                    <form class="col-12 main-form">
                         <label style="font-weight: bold">De quoi avez-vous besoin à Campus ID?</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -153,6 +183,12 @@
                                 <textarea style=" height: 100px" class="form-control" id="examplebesoinService"
                                           aria-describedby="emailHelp"
                                           placeholder="Ex: Est-ce que quelqu'un pourrez m'expliquer le singleton en java"></textarea>
+                                <div class="input-group mb-2">
+                                    <input class="form-control" id="autocomplete_input_service" type="text"
+                                           placeholder="Catégorie">
+                                    <div class="dropdown-menu" style="width: 100%" id="autocompletion_service">
+                                    </div>
+                                </div>
                                 <label style="font-weight: bold" class="control-label">Pour quand ? : La date</label>
                                 <div class="input-group date" id="dp4" data-date="15-01-2020"
                                      data-date-format="mm-dd-yyyy">
@@ -160,8 +196,8 @@
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                             </div>
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">Demander à mes Camerades</button>
+                            <div class="col text-center margin">
+                                <button  type="submit" class="btn btn-primary ">Demander à mes Camerades</button>
                             </div>
                         </form>
                     </form>
@@ -180,19 +216,19 @@
     </div>
     <div class="container">
         <div class="row">
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button bouton_roundleft" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-microchip"></i>
                 Matériel informatique
             </button>
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button button__middle" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-highlighter"></i>
                 Livres/Fourniture de bureau
             </button>
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button button__middle" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-glass-cheers"></i>
                 Evènement réception fête
             </button>
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button bouton_roundright" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-volleyball-ball"></i>
                 Loisirs
             </button>
@@ -208,19 +244,19 @@
 
     <div class="container">
         <div class="row" style="padding-bottom : 40px;">
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button bouton_roundleft" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-laptop"></i> Cours
                 particuliers
             </button>
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button button__middle" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-book-open"></i>
                 Récupération de cours
             </button>
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button button__middle" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-car-side"></i>
                 Covoiturage
             </button>
-            <button class="col-3" type="button" onclick="window.location.href='settings.html'"><i
+            <button class="col-3 button bouton_roundright" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-comments"></i>
                 Autres...
             </button>
