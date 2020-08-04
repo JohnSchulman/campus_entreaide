@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "connect": "^3.7.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dust": "^0.3.0",
@@ -18,6 +19,7 @@
     "mv": "^2.1.1",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.4",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "body-parser": "latest"
   }
 }

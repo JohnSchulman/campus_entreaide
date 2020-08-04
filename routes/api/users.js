@@ -65,6 +65,49 @@ router.post('/login', function (req, res) {
 // middleware qui permet d'uploader une image trouver sur internet
 var upload = multer({ dest: __dirname + '/../../public/images/avatars/' });
 router.post('/register', upload.single('avatar'), function (req, res) {
+
+    function addInDb({email, firstName, lastName, password, avatar_path, address}) {
+        getMysql().query('SELECT id FROM `users` WHERE email="' + email + '"',  (error, results, fields) => {
+            if (error) {
+                res.json({
+                    status: false,
+                    message: error
+                });
+            } else {
+                if (results.length > 0) {
+                    res.json({
+                        status: false,
+                        message: 'L\'email que vous avez saisie est déjà utilisé !'
+                    })
+                } else {
+                    getMysql().query('INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`, `avatar`, `opinon`, `is_checked`, `address`, `real_time_alert`) ' +
+                        '                  VALUES ("' + firstName + '", "' + lastName + '", "' + email + '", "' + password + '", "' + avatar_path.replace(/\\/g, '/') + '", 0, TRUE, "' + address + '", 0)',
+                        (error, results, field) => {
+                            if (error) {
+                                res.json({
+                                    status: false,
+                                    message: error
+                                });
+                            } else {
+                                res.json({
+                                    status: true,
+                                    user: {
+                                        firstName,
+                                        lastName,
+                                        email,
+                                        address,
+                                        opinion: 0,
+                                        is_checked: true,
+                                        real_time_alert: false,
+                                        avatar: avatar_path
+                                    }
+                                });
+                            }
+                        });
+                }
+            }
+        });
+    }
     // toutes les information qu'on a envoyé
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
@@ -74,66 +117,30 @@ router.post('/register', upload.single('avatar'), function (req, res) {
 
     // extraction des prorpiété req.file utlisé
     // alternative car comme au dessus ca le processeur mettez undefined
-    const {path, filename, originalname} = req.file;
-    // on a juste stocker un string dans une variable
-    // on prepare le path
-    // le premiere replace remplace les chiffree en bruce_lee.png
-    // 2eme replace c'est pour l'expression
-    const avatar_path = path.replace(filename, originalname.replace(/\ /g, '_'));
+    if (req.file !== undefined) {
+        const {path, filename, originalname} = req.file;
+        // on a juste stocker un string dans une variable
+        // on prepare le path
+        // le premiere replace remplace les chiffree en bruce_lee.png
+        // 2eme replace c'est pour l'expression
+        const avatar_path = path.replace(filename, originalname.replace(/\ /g, '_'));
 
-    // premiere parametre c'est l'ancien path et le deuxième c'est le nouveau
-    // ici je passe le path en paramtere grace a fs on renomme le fichier
-    fs.rename(path, avatar_path, function (err) {
-        if (err) {
-            res.json({
-                status: false,
-                message: err
-            })
-        }
-        if (!err) {
-            getMysql().query('SELECT id FROM `users` WHERE email="' + email + '"',  (error, results, fields) => {
-                if (error) {
-                    res.json({
-                        status: false,
-                        message: error
-                    });
-                } else {
-                    if (results.length > 0) {
-                        res.json({
-                            status: false,
-                            message: 'L\'email que vous avez saisie est déjà utilisé !'
-                        })
-                    } else {
-                        getMysql().query('INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`, `avatar`, `opinon`, `is_checked`, `address`, `real_time_alert`) ' +
-                            '                  VALUES ("' + firstName + '", "' + lastName + '", "' + email + '", "' + password + '", "' + avatar_path.replace(/\\/g, '/') + '", 0, TRUE, "' + address + '", 0)',
-                            (error, results, field) => {
-                                if (error) {
-                                    res.json({
-                                        status: false,
-                                        message: error
-                                    });
-                                } else {
-                                    res.json({
-                                        status: true,
-                                        user: {
-                                            firstName,
-                                            lastName,
-                                            email,
-                                            address,
-                                            opinion: 0,
-                                            is_checked: true,
-                                            real_time_alert: false,
-                                            avatar: avatar_path
-                                        }
-                                    });
-                                }
-                            });
-                    }
-                }
-            });
-
-        }
-    });
+        // premiere parametre c'est l'ancien path et le deuxième c'est le nouveau
+        // ici je passe le path en paramtere grace a fs on renomme le fichier
+        fs.rename(path, avatar_path, function (err) {
+            if (err) {
+                res.json({
+                    status: false,
+                    message: err
+                })
+            }
+            if (!err) {
+                addInDb({email, firstName, lastName, password, avatar_path, address});
+            }
+        });
+    } else {
+        addInDb({email, firstName, lastName, password, avatar_path: '', address});
+    }
 });
 
 module.exports = router;

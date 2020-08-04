@@ -71,6 +71,8 @@ window.addEventListener('load', function () {
         });
     }
 
+    // Code principale : l'utilsation du Fonction catcher_autocompletion
+
     // supprime la liste quand on arrête de clicker
     // la prmeiere autocomplete_input est l'élément
     autocomplete_input_object.addEventListener('keyup', function () {

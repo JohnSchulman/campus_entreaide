@@ -121,7 +121,7 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="row">
-                    <form class="col-12 main-form">
+                    <div class="col-12 main-form">
                         <label style="font-weight: bold">De quoi avez-vous besoin à Campus ID?</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -139,16 +139,16 @@
                             </div>
                             <label class="radio-inline" for="Service">Un Service </label>
                         </div>
-                        <form action="/api/service" method="post">
-                            <input type="hidden" id="service_type" value="0"/>
+                        <form action="/api/objects" method="post" id='create_demande_form'>
+                            <input type="hidden" name="service_type" id="service_type" value="0"/>
                             <label style="font-weight: bold">Expliquez votre besoin</label>
                             <div class="objects">
                                 <div class="input-group mb-2">
-                                    <textarea style=" height: 100px" class="form-control" id="descriptionObject"
+                                    <textarea style=" height: 100px" class="form-control" name="descriptionObject" id="descriptionObject"
                                               placeholder="Ex: Est-ce que quelqu'un pourrait me preter un Rasberry PI ?"></textarea>
                                 </div>
                                 <div class="input-group mb-2">
-                                    <input class="form-control" id="autocomplete_input" type="text"
+                                    <input class="form-control" name="autocomplete_input" id="autocomplete_input" type="text"
                                            placeholder="Catégorie">
                                     <div class="dropdown-menu" style="width: 100%" id="autocompletion">
                                     </div>
@@ -156,7 +156,7 @@
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Durée">
+                                            <input class="form-control" name="duration" id="duration" type="number" placeholder="Durée">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"> / Jour(s)</span>
                                             </div>
@@ -164,7 +164,7 @@
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="Budget">
+                                            <input class="form-control" name="budget" id="budget" type="number" placeholder="Budget">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"> € </span>
                                             </div>
@@ -172,27 +172,32 @@
                                     </div>
                                 </div>
                                 <label style="font-weight: bold" class="control-label">Pour quand ? : La date</label>
-                                <div class="input-group date" id="dp3" data-date="15-01-2020"
+                                <div class="input-group date" data-date="15-01-2020"
                                      data-date-format="mm-dd-yyyy">
-                                    <input class="form-control" type="text" placeholder="15-01-2020">
+                                    <input class="form-control" name="date" id="date" type="text" placeholder="15-01-2020">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                             </div>
                             <div class="services" style="display: none;">
-                                services <br>
-                                <textarea style=" height: 100px" class="form-control" id="examplebesoinService"
+                                <textarea style=" height: 100px" class="form-control mb-2" name="examplebesoinService" id="desccriptionService"
                                           aria-describedby="emailHelp"
                                           placeholder="Ex: Est-ce que quelqu'un pourrez m'expliquer le singleton en java"></textarea>
                                 <div class="input-group mb-2">
-                                    <input class="form-control" id="autocomplete_input_service" type="text"
+                                    <input class="form-control" name="autocomplete_input_service" id="autocomplete_input_service" type="text"
                                            placeholder="Catégorie">
                                     <div class="dropdown-menu" style="width: 100%" id="autocompletion_service">
+                                    </div>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input class="form-control" name="budget" id="budget_service" type="number" placeholder="Budget">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"> € </span>
                                     </div>
                                 </div>
                                 <label style="font-weight: bold" class="control-label">Pour quand ? : La date</label>
                                 <div class="input-group date" id="dp4" data-date="15-01-2020"
                                      data-date-format="mm-dd-yyyy">
-                                    <input class="form-control" type="text" placeholder="15-01-2020">
+                                    <input class="form-control" name="date_service" id="date_service" type="text" placeholder="15-01-2020">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                             </div>
@@ -200,7 +205,7 @@
                                 <button  type="submit" class="btn btn-primary ">Demander à mes Camerades</button>
                             </div>
                         </form>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="col-0 col-md-2">

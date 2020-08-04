@@ -55,3 +55,16 @@ window.addEventListener('load', function () {
         }
     })
 });
+
+/*
+module.exports = function () {
+    jqbdssjcj
+};
+
+<script type="module" src="..."></script>
+
+<script type="module">
+    var toto = require('fichoer');
+    toto();
+</script>
+ */
