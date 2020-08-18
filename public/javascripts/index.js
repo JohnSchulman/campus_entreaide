@@ -65,7 +65,7 @@ window.addEventListener('load', function () {
         // j'execute la regex avec une valeur dedans
         // code pris sur regex101.com
         let cmp = 0;
-        while ((m = regex.exec(values.date)) !== null) {
+        while ((m = regex.exec(values.creation_date)) !== null) {
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index === regex.lastIndex) {
                 regex.lastIndex++;
@@ -78,8 +78,14 @@ window.addEventListener('load', function () {
             });
         }
         if (cmp === 0) {
-            throw new Error('Le format de la date n\'est pas correcte.');
+            let date_id = type === 1 ? 'date_service' : 'date;';
+            let error = new Error('Le format de la date n\'est pas correcte.');
+            // j'affecte une proprieté code à mon obet erreur et puis j'affecte date_id à error.code
+            // pour avoir un id sêcifique pour le recuperer dans le catch
+            error.code = date_id;
+            throw error;
         }
+
 
         fetch(form.getAttribute('action'), {
             method: form.getAttribute('method'),
@@ -89,9 +95,34 @@ window.addEventListener('load', function () {
             }
         }).then(r => r.json())
             .then(json => {
-                console.log(json);
+                if (!json.status && json.type === "redirect"){
+                    window.location.href = '/login';
+                }
+                let _values = {};
+                if (type === 0) {
+                    _values = {
+                        description: document.querySelector('#descriptionObject'),
+                        category: document.querySelector('#autocomplete_input'),
+                        time: document.querySelector('#duration'),
+                        budget: document.querySelector('#budget'),
+                        creation_date: document.querySelector('#date'),
+                        title: document.querySelector('#title'),
+                    };
+                } else if (type === 1) {
+                    _values = {
+                        description: document.querySelector('#desccriptionService'),
+                        category: document.querySelector('#autocomplete_input_service'),
+                        budget: document.querySelector("#budget_service"),
+                        creation_date: document.querySelector('#date_service'),
+                        title: document.querySelector('#title'),
+                    };
+                }
+                // un for of
+                for(let key of Object.keys(_values)) {
+                    let value = _values[key];
+                    value.value = "";
+                }
             })
-
     }
 
     form.addEventListener("submit", function(e){
@@ -105,32 +136,40 @@ window.addEventListener('load', function () {
             values = {
                 description: document.querySelector('#descriptionObject').value,
                 category: document.querySelector('#autocomplete_input').value,
-                duration: document.querySelector('#duration').value,
+                time: document.querySelector('#duration').value,
                 budget: document.querySelector('#budget').value,
-                date: document.querySelector('#date').value,
+                creation_date: document.querySelector('#date').value,
+                title: document.querySelector('#title').value,
             };
         } else if (type === '1') {
             values = {
                 description: document.querySelector('#desccriptionService').value,
                 category: document.querySelector('#autocomplete_input_service').value,
                 budget: document.querySelector("#budget_service").value,
-                date: document.querySelector('#date_service').value,
+                creation_date: document.querySelector('#date_service').value,
+                title: document.querySelector('#title').value,
             };
         }
+
         try {
             create_demande(type, values);
-        } catch (e) {
+        }
+        catch (e) {
             // interaction html en javascript
-            // ici on rajoute dans le .dust une classe dans le .input et puis
-            //  on creer un div et puis  on ajoute une classe invalide-feedback  dans le div
-            document.querySelector('#date').classList.add('is-invalid');
+
+            // ici on rajoute dans le .dust ...
+            // grace à l'id je me place dans le l'input et puis je creer ma deuxième classe dans l'input
+            document.querySelector('#' + e.code).classList.add('is-invalid');
+            // je creer le div
             let feedback = document.createElement('div');
             feedback.classList.add('invalid-feedback');
+            // l'erreur de la class "invalid-feedback
+            // pour ecrire du contenue dans l'html. Mais si tu as déjà du contenue fait attention
             feedback.innerHTML = e.message;
-            document.querySelector('#date').parentElement.appendChild(feedback);
+            // on place le div après le span
+            document.querySelector('#' + e.code).parentElement.appendChild(feedback);
             console.log(e.message);
         }
     });
-
-    
 });
+

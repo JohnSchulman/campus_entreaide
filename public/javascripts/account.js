@@ -5,14 +5,17 @@ window.addEventListener('load', function () {
             // tableau d'éléments html qui ont cette classe la
             // queryselectorAll equivaut getelement par class name
             // querySelector récupère par contre juste un element de l'id ou de la classe
+            // navbar
             let show_on_connected = document.querySelectorAll('.show-on-connected');
             let show_on_disconnected = document.querySelectorAll('.show-on-disconnected');
 
             for(let elem of show_on_connected) {
                 // d-none c'est une classe raccourcie du css display none
                 if(json.status) {
+                    // remove le d-none donc tout reapparaise
                     elem.classList.remove('d-none');
                 } else {
+                    // add le d-none tout disparait
                     elem.classList.add('d-none');
                 }
             }

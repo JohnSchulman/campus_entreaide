@@ -139,9 +139,12 @@
                             </div>
                             <label class="radio-inline" for="Service">Un Service </label>
                         </div>
-                        <form action="/api/objects" method="post" id='create_demande_form'>
+                        <form action="/api/services" method="post" id='create_demande_form'>
                             <input type="hidden" name="service_type" id="service_type" value="0"/>
                             <label style="font-weight: bold">Expliquez votre besoin</label>
+                            <div class = "input-group mb-2">
+                                <input type = "text" class = "form-control" placeholder="Titre" id ="title"/>
+                            </div>
                             <div class="objects">
                                 <div class="input-group mb-2">
                                     <textarea style=" height: 100px" class="form-control" name="descriptionObject" id="descriptionObject"

@@ -139,7 +139,7 @@ router.post('/register', upload.single('avatar'), function (req, res) {
             }
         });
     } else {
-        addInDb({email, firstName, lastName, password, avatar_path: '', address});
+        addInDb({email, firstName, lastName, password, avatar_path: '', address})
     }
 });
 
