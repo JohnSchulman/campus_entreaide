@@ -98,6 +98,16 @@ window.addEventListener('load', function () {
                 if (!json.status && json.type === "redirect"){
                     window.location.href = '/login';
                 }
+                else if(json.status){
+                    let show_on_demand_sent = document.querySelectorAll('.show_on_demand_sent');
+                    for (let elem of show_on_demand_sent) {
+                        if (json.status) {
+                            elem.classList.remove('d-none');
+                        } else {
+                            elem.classList.add('d-none');
+                        }
+                    }
+                }
                 let _values = {};
                 if (type === 0) {
                     _values = {

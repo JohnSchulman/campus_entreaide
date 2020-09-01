@@ -207,6 +207,9 @@
                             <div class="col text-center margin">
                                 <button  type="submit" class="btn btn-primary ">Demander à mes Camerades</button>
                             </div>
+                            <div class="alert alert-success show_on_demand_sent d-none " role="alert">
+                                Votre demande a été envoyé avec succes !
+                            </div>
                         </form>
                     </div>
                 </div>

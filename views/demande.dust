@@ -183,6 +183,11 @@
             </div>
         </div>
     </div>
+    <div class="row d-none" id = "show_on_not_result">
+        <div class="col-12">
+             <div  class="alert alert-danger " role="alert"></div>
+        </div>
+    </div>
 </main>
 <footer class="container-fluid card-footer">
     <div class="row">
