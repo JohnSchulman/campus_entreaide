@@ -23,6 +23,7 @@ router.get('/', async function(req, res) {
                     objTmp.service = JSON.parse(JSON.stringify(_result[0]));
                 }
                 objTmp = JSON.parse(JSON.stringify(objTmp));
+                //
                 tmp.push(objTmp);
             }
             res.json({
