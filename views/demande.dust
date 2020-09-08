@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="/bootstrapv4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
@@ -23,7 +24,7 @@
 <body>
 <header class="container-fluid">
     <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="images/Logo3.png" alt="Responsive image"  height="70" width="70">
+        <img src="/images/Logo3.png" alt="Responsive image"  height="70" width="70">
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
@@ -63,6 +64,9 @@
     <div class="title">
         <h1>Les demandes</h1>
     </div>
+    {#category_id}
+        <input type="hidden" id="category_id" value="{category_id}" />
+    {/category_id}
     <div class="row card-projects-list">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">
@@ -183,6 +187,7 @@
             </div>
         </div>
     </div>
+    <div class="row modal-projects-list" ></div>
     <div class="row d-none" id = "show_on_not_result">
         <div class="col-12">
              <div  class="alert alert-danger " role="alert"></div>

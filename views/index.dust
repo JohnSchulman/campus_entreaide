@@ -55,7 +55,7 @@
 <body>
 <header class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="images/Logo3.png" alt="Responsive image" height="70" width="70">
+        <img src="/images/Logo3.png" alt="Responsive image" height="70" width="70">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto" class="navbar-nav">
                 <li class="nav-item">
@@ -226,8 +226,8 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <button class="col-3 button bouton_roundleft" type="button" onclick="window.location.href='settings.html'"><i
+        <div class="row" id="objects_categories_container">
+            <!--<button class="col-3 button bouton_roundleft" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-microchip"></i>
                 Matériel informatique
             </button>
@@ -242,7 +242,7 @@
             <button class="col-3 button bouton_roundright" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-volleyball-ball"></i>
                 Loisirs
-            </button>
+            </button>-->
         </div>
     </div>
     <div class="container">
@@ -254,8 +254,8 @@
     </div>
 
     <div class="container">
-        <div class="row" style="padding-bottom : 40px;">
-            <button class="col-3 button bouton_roundleft" type="button" onclick="window.location.href='settings.html'"><i
+        <div class="row" id="services_categories_container" style="padding-bottom : 40px;">
+            <!--<button class="col-3 button bouton_roundleft" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-laptop"></i> Cours
                 particuliers
             </button>
@@ -270,7 +270,7 @@
             <button class="col-3 button bouton_roundright" type="button" onclick="window.location.href='settings.html'"><i
                     class="fas fa-comments"></i>
                 Autres...
-            </button>
+            </button>-->
         </div>
     </div>
 </main>

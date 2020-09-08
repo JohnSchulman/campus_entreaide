@@ -181,5 +181,64 @@ window.addEventListener('load', function () {
             console.log(e.message);
         }
     });
+
+    function list_categories_by_type(type) {
+        return fetch(`/api/categories/${type}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(r => r.json());
+    }
+
+    function write_buttons(container, categories) {
+        if (container) {
+            container.innerHTML = '';
+
+            let i = 0;
+            for (let { id, title, image } of categories) {
+                let classe;
+                if (i === 0) {
+                    classe = 'roundleft';
+                } else if (i === categories.length - 1) {
+                    classe = 'roundright';
+                } else {
+                    classe = '_middle';
+                }
+                container.innerHTML += `<button id="category_${id}" class="col-3 button bouton_${classe}" type="button"><i class="fas fa-${image}"></i> 
+                ${title}
+            </button>`;
+
+                console.log(document.querySelector(`#category_${id}`))
+                document.querySelector(`#category_${id}`).addEventListener('click', () => {
+                    console.log(document.querySelector(`#category_${id}`))
+                    window.location.href = `/demande/${id}`
+                });
+                i++;
+            }
+        }
+    }
+
+    function write_error(container, error) {
+        if (container) {
+            container.innerHTML = error;
+        }
+    }
+
+    list_categories_by_type('services').then(json => {
+        if (json.status) {
+            write_buttons(document.querySelector('#services_categories_container'), json.result)
+        } else {
+            write_error(document.querySelector('#services_categories_container'), 'Aucune catégorie disponible');
+        }
+    });
+
+    list_categories_by_type('objects').then(json => {
+        if (json.status) {
+            write_buttons(document.querySelector('#objects_categories_container'), json.result)
+        } else {
+            write_error(document.querySelector('#services_categories_container'), 'Aucune catégorie disponible');
+        }
+    });
 });
 

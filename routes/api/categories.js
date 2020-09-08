@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+
 function getMysql() {
     return require('../../confs/mysql');
 }
@@ -32,6 +33,37 @@ router.get('/autocompletion/:service_type/:title', function (req, res) {
                 });
             }
         });
+});
+
+function callback(error, results, res){
+    if(error){
+        res.json({
+            status: false,
+            message : error
+        })
+    }
+    else{
+        let tmp = [];
+        // on boucle sur les résultats
+        for(let r of results) {
+            // on les met dans le tableau
+            // comme append mais en js
+            tmp.push({id: r.id, title: r.title, image: r.image});
+        }
+        res.json({
+            status: true,
+            result: tmp
+        })
+    }
+}
+
+router.get('/services', function(req, res){
+    getMysql().query('SELECT * FROM `categories` WHERE `Catégorie_type` = 0', (e, r) => callback(e, r, res))
+
+});
+
+router.get('/objects', function (req, res) {
+    getMysql().query('SELECT * FROM `categories` WHERE `Catégorie_type` = 1', (e, r) => callback(e, r, res))
 });
 
 module.exports = router;
