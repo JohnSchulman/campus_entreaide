@@ -66,11 +66,14 @@ window.addEventListener('load', () => {
                   </div>`
             }
 
+
     // on écrit l'url en paramètre car on ne passe pas par une formulaire
     // variable qui recupere le hidden
     let category_id = document.querySelector('#category_id');
+    let is_me = document.querySelector('#is_me');
     // ternaire pour pouvoir rajouter un id_categories dans l'url de l'API
-    fetch("/api/requests" + (category_id ? '/' + category_id.value : ''), {
+    // on peut faire attant de condition dans un fetch car on aura en final qu'une seul cas ici
+    fetch("/api/requests" + (category_id ? '/' + category_id.value : '') + (is_me ? '/mine'  : ''), {
         method: "get",
         headers: {
             "Content-Type": 'application/json'

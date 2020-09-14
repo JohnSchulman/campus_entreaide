@@ -64,9 +64,16 @@
     <div class="title">
         <h1>Les demandes</h1>
     </div>
+
+    <!--si category_id exist je fais le code entre la condition -->
     {#category_id}
         <input type="hidden" id="category_id" value="{category_id}" />
     {/category_id}
+
+    <!--pour savoir si c'est le user connecte-->
+    {#is_me}
+        <input type="hidden" id="is_me" value="1"/>
+    {/is_me}
     <div class="row card-projects-list">
         <div class="col-sm-12 col-md-6 col-lg-4">
             <div class="card">

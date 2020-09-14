@@ -13,12 +13,19 @@ dust._.optimizers.format = function (ctx, node) {
     return node
 };
 
+// middleware pour ajouter des fonctionalité
+// modifier le framework
+
 app.engine('dust', dust.engine());
 app.set('view engine', 'dust');
+// pour le terminal
 app.use(logger('dev'));
 app.use(express.json());
+//
 app.use(express.urlencoded({ extended: false }));
+//
 app.use(cookieParser());
+// defnir le repertoire public
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'keyboard cat',
@@ -29,6 +36,8 @@ app.use(session({
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 
+
+// Pour creer les groupes de routes
 var indexRouter = require('./routes/front');
 var apiRouter = require('./routes/api/index');
 var apiUsersRouter = require('./routes/api/users');

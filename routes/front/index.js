@@ -28,6 +28,11 @@ router.get('/demande', function(req, res) {
 });
 
 /* GET demande page. */
+router.get('/my-demands', function(req, res) {
+  res.render('demande', {is_me: true});
+});
+
+/* GET demande page. */
 router.get('/demande/:category_id', function(req, res) {
   res.render('demande', {category_id: req.param('category_id')});
 });

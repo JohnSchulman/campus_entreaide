@@ -194,10 +194,12 @@ window.addEventListener('load', function () {
     function write_buttons(container, categories) {
         if (container) {
             container.innerHTML = '';
-
+        // pour creer les boutons
             let i = 0;
             for (let { id, title, image } of categories) {
                 let classe;
+                // si tu est sur le premier element
+                // pour les contoutrs
                 if (i === 0) {
                     classe = 'roundleft';
                 } else if (i === categories.length - 1) {
@@ -206,14 +208,8 @@ window.addEventListener('load', function () {
                     classe = '_middle';
                 }
                 container.innerHTML += `<button id="category_${id}" class="col-3 button bouton_${classe}" type="button"><i class="fas fa-${image}"></i> 
-                ${title}
+                <a href="/demande/${id}" target="_blank">${title}</a>
             </button>`;
-
-                console.log(document.querySelector(`#category_${id}`))
-                document.querySelector(`#category_${id}`).addEventListener('click', () => {
-                    console.log(document.querySelector(`#category_${id}`))
-                    window.location.href = `/demande/${id}`
-                });
                 i++;
             }
         }
@@ -225,6 +221,7 @@ window.addEventListener('load', function () {
         }
     }
 
+    // on liste les demandes en fonction du type de categorie
     list_categories_by_type('services').then(json => {
         if (json.status) {
             write_buttons(document.querySelector('#services_categories_container'), json.result)
