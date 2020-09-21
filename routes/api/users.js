@@ -108,6 +108,7 @@ router.post('/register', upload.single('avatar'), function (req, res) {
             }
         });
     }
+
     // toutes les information qu'on a envoyé
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
@@ -117,6 +118,7 @@ router.post('/register', upload.single('avatar'), function (req, res) {
 
     // extraction des prorpiété req.file utlisé
     // alternative car comme au dessus ca le processeur mettez undefined
+
     if (req.file !== undefined) {
         const {path, filename, originalname} = req.file;
         // on a juste stocker un string dans une variable
@@ -135,7 +137,8 @@ router.post('/register', upload.single('avatar'), function (req, res) {
                 })
             }
             if (!err) {
-                addInDb({email, firstName, lastName, password, avatar_path, address});
+                addInDb({email, firstName, lastName, password,
+                    avatar_path: avatar_path.replace(/D:\\.+\\public/g, ''), address});
             }
         });
     } else {

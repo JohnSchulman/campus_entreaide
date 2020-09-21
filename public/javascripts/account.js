@@ -31,25 +31,32 @@ window.addEventListener('load', function () {
             let first_name = json.me.first_name;
             let last_name = json.me.last_name;
             let address = json.me.address;
-            if(address !== '') {
-                // transforme une string bizarre en json
-                address = JSON.parse(address);
-            } else {
-                address = {};
-            }
+            // if(address !== '') {
+            //     // transforme une string bizarre en json
+            //     address = JSON.parse(address);
+            // } else {
+            //     address = {};
+            // }
             let email = json.me.email;
+            let avatar = json.me.avatar;
 
             document.querySelector('#firstname').value = first_name;
             document.querySelector('#name').value = last_name;
             document.querySelector('#mail').value = email;
-            if(address.street !== undefined) {
-                document.querySelector('#adresse').value = address.street;
-            }
-            if(address.zipcode !== undefined) {
-                document.querySelector('#zipcode').value = address.zipcode;
-            }
-            if(address.city !== undefined) {
-                document.querySelector('#city').value = address.city;
+            document.querySelector('#adresse').value = address;
+            // if(address.street !== undefined) {
+            //     document.querySelector('#adresse').value = address.street;
+            // }
+            // if(address.zipcode !== undefined) {
+            //     document.querySelector('#zipcode').value = address.zipcode;
+            // }
+            // if(address.city !== undefined) {
+            //     document.querySelector('#city').value = address.city;
+            // }
+
+            if (avatar !== '') {
+                console.log(avatar)
+                document.querySelector('#avatar').setAttribute('src', avatar);
             }
 
             console.log(json.me)

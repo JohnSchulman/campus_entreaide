@@ -23,10 +23,7 @@ window.addEventListener('load', function () {
 
         fetch(action, {
             method: method,
-            body: formData,
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            body: formData
         }).then(r => r.json())
             .then(function (json) {
                 if(json.status) {

@@ -75,7 +75,7 @@
 <div class="container">
     <div class="row">
         <div class="col-4 offset-4 col-lg-3 offset-lg-0 text-center">
-            <img class="mr-2 circle profile-pic" src="/images/avatar.jpg">
+            <img id="avatar" class="mr-2 circle profile-pic" src="/images/avatar.jpg">
         </div>
         <div class="col-12 col-lg-6">
             <form>
